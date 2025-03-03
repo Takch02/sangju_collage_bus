@@ -14,10 +14,10 @@ public class RegionRepository {
 
     // 생성자에서 초기화
     public RegionRepository() {
-        regionTimeMap.put("school", TimeTable.school_front);
-        regionTimeMap.put("gami", TimeTable.gami_front);
-        regionTimeMap.put("loi", TimeTable.loi_front);
-        regionTimeMap.put("poung", TimeTable.poung_front);
+        regionTimeMap.put("학교", TimeTable.school_front);
+        regionTimeMap.put("가미", TimeTable.gami_front);
+        regionTimeMap.put("루이까스텔", TimeTable.loi_front);
+        regionTimeMap.put("풍물거리", TimeTable.poung_front);
     }
 
 

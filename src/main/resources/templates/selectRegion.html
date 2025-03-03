@@ -1,37 +1,80 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>남은 시간</title>
+  <!-- Bootstrap CSS -->
   <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts (선택: 더 예쁜 폰트 사용) -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
   <style>
-
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Noto Sans KR', 'Arial', sans-serif; /* 한국어에 어울리는 폰트 추가 */
+      background: linear-gradient(135deg, #e0f7fa, #80deea); /* 그라디언트 배경 */
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
 
     .container {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      background: #ffffff;
+      padding: 40px; /* 패딩 증가로 더 여유롭게 */
+      border-radius: 15px; /* 더 둥근 모서리 */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 그림자 강화 */
       text-align: center;
-      width: 250px;
+      width: 500px;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* 세로 중앙 정렬 */
+      transition: transform 0.3s ease; /* 호버 애니메이션 준비 */
     }
+
+    .container:hover {
+      transform: translateY(-5px); /* 호버 시 살짝 떠오르는 효과 */
+    }
+
+    h2 {
+      font-size: 2.5rem; /* 제목 크기 증가 */
+      color: #007bff; /* Bootstrap 기본 블루 컬러 */
+      margin-bottom: 30px; /* 아래 여백 추가 */
+      font-weight: 700; /* 두껍게 */
+    }
+
+    p {
+      font-size: 1.25rem; /* 텍스트 크기 증가 */
+      color: #333; /* 더 진한 회색 */
+      margin: 20px 0; /* 위아래 여백 */
+      padding: 15px; /* 텍스트 주변 여백 */
+      background: #f8f9fa; /* 연한 회색 배경 */
+      border-radius: 8px; /* 둥근 모서리 */
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); /* 살짝 들어간 효과 */
+      transition: background 0.3s ease; /* 배경 전환 애니메이션 */
+    }
+
+    p:hover {
+      background: #e9ecef; /* 호버 시 약간 어두운 배경 */
+    }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
 
   </style>
 </head>
 <body>
 <div class="container">
-  <h2>현재 남은 시간</h2>
+  <h2 th:text="${selectRegion}">현재 지역</h2>
   <div>
     <p th:text="|현재 시간 : ${currentTime}|">현재 시간</p>
-    <p th:text="|남은 시간 :${nextTime}|">남은 시간</p>
+    <p th:text="|남은 시간 : ${nextTime}|">남은 시간</p>
+    <p><a th:href="@{/timeTable/{selectRegion}(selectRegion=${selectRegion})}">버스 시간표 보러가기</a></p>
   </div>
 </div>
 </body>

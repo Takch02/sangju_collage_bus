@@ -13,10 +13,7 @@ import test.projectbus.logic.service.TimeCompareService;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @Slf4j
@@ -29,14 +26,9 @@ public class HomeController {
      * 지역 추가하고 model 에 넣어 html 에 보내준다.
      */
     @ModelAttribute(name = "regions")
-    public Map<String, String> regions() {
+    public List<String> regions() {
 
-        Map<String, String> regions = new LinkedHashMap<>();
-        regions.put("학교", "school");
-        regions.put("가미", "gami");
-        regions.put("루이까스텔", "loi");
-        regions.put("풍물거리", "poung");
-        return regions;
+        return Arrays.asList("학교", "가미", "루이까스텔", "풍물거리");
     }
 
     @GetMapping("/")
@@ -55,6 +47,7 @@ public class HomeController {
 
         model.addAttribute("nextTime", nextTime);
         model.addAttribute("currentTime", currentTime());
+        model.addAttribute("selectRegion", selectRegion);
 
         log.info("currentTime : [{}]", LocalTime.now());
         log.info("nextTime : [{}]", nextTime);

@@ -71,13 +71,6 @@
             transform: scale(1.05);
         }
 
-        /* 반응형 디자인 */
-        @media (max-width: 400px) {
-            .container {
-                width: 90%;
-                padding: 20px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -90,8 +83,8 @@
             <label for="scrollType" class="form-label" th:text="'지역 선택 :'">지역 선택 :</label>
             <select id="scrollType" name="selectRegion" class="form-select">
                 <option th:each="region : ${regions}"
-                        th:value="${region.getValue()}"
-                        th:text="${region.getKey()}">지역</option>
+                        th:value="${region}"
+                        th:text="${region}">지역</option>
             </select>
         </div>
         <div class="d-grid">
