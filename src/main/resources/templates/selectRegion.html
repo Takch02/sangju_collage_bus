@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>남은 시간</title>
+  <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+  <style>
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 250px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>현재 남은 시간</h2>
+  <div>
+    <p th:text="|현재 시간 : ${currentTime}|">현재 시간</p>
+    <p th:text="|남은 시간 :${nextTime}|">남은 시간</p>
+  </div>
+</div>
+</body>
+</html>

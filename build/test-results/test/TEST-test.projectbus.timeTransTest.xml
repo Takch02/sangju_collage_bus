@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test.projectbus.timeTransTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-03-03T10:59:55" hostname="탁찬홍" time="1.841">
+  <properties/>
+  <testcase name="test01()" classname="test.projectbus.timeTransTest" time="1.841"/>
+  <system-out><![CDATA[19:59:52.805 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [test.projectbus.timeTransTest]: timeTransTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:59:53.024 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration test.projectbus.ProjectBusApplication for test class test.projectbus.timeTransTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.3)
+
+2025-03-03T19:59:53.746+09:00  INFO 2808 --- [project-bus] [    Test worker] test.projectbus.timeTransTest            : Starting timeTransTest using Java 17.0.11 with PID 2808 (started by Takch in D:\project\project-bus)
+2025-03-03T19:59:53.749+09:00  INFO 2808 --- [project-bus] [    Test worker] test.projectbus.timeTransTest            : No active profile set, falling back to 1 default profile: "default"
+2025-03-03T19:59:55.711+09:00  INFO 2808 --- [project-bus] [    Test worker] test.projectbus.timeTransTest            : Started timeTransTest in 2.447 seconds (process running for 4.334)
+current : 10
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
