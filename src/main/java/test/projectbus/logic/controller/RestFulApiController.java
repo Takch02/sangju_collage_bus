@@ -13,11 +13,13 @@ import java.util.Map;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class RestFulApiController {
 
     private final RegionRepository regionRepository;
@@ -28,7 +30,7 @@ public class RestFulApiController {
      * 값 2개를 map 형식으로 보냄.
      */
 
-     @PostMapping(produces = "application/json", path = "/api")
+     @PostMapping(produces = "application/json")
      public ResponseEntity<Map<String, Object>> PostApi(@RequestBody Map<String, String> request) {
         
         log.info("작동 시작");
