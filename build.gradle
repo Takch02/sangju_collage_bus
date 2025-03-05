@@ -5,7 +5,7 @@ plugins {
 }
 
 tasks.named('bootJar') {
-    mainClass = 'test.projectbus.Application'  // 실제 패키지 경로에 맞게 수정
+    mainClass = 'test.projectbus.ProjectBusApplication'  // 실제 패키지 경로에 맞게 수정
 }
 
 
