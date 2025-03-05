@@ -30,23 +30,23 @@ public class RestFulApiController {
      * 값 2개를 map 형식으로 보냄.
      */
 
-     @PostMapping(produces = "application/json")
-     public ResponseEntity<Map<String, Object>> PostApi(@RequestBody Map<String, String> request) {
-        
-        log.info("작동 시작");
-         String selectRegion = request.get("selectRegion"); // JSON에서 추출
-         log.info("selectRegion : [{}]", selectRegion);
-         List<String> reionList = regionRepository.getReionList(selectRegion);
-         String nextTime = timeCompareService.compareTime(reionList);
-     
-         Map<String, Object> response = new HashMap<>();
-         response.put("nextTime", nextTime);
-         response.put("selectRegion", selectRegion);
+    @PostMapping(produces = "application/json")
+    public ResponseEntity<Map<String, Object>> PostApi(@RequestBody Map<String, String> request) {
 
-         log.info("nextTime : [{}]", nextTime);
-         log.info("selectRegion : [{}]", selectRegion);
-     
-         return ResponseEntity.ok(response);
-     }
-    
+        log.info("작동 시작");
+        String selectRegion = request.get("selectRegion"); // JSON에서 추출
+        log.info("selectRegion : [{}]", selectRegion);
+        List<String> reionList = regionRepository.getReionList(selectRegion);
+        String[] nextTime = timeCompareService.compareTime(reionList);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("nextTime", nextTime);
+        response.put("selectRegion", selectRegion);
+
+        log.info("nextTime : [{}]", nextTime);
+        log.info("selectRegion : [{}]", selectRegion);
+
+        return ResponseEntity.ok(response);
+    }
+
 }
