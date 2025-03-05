@@ -23,11 +23,6 @@ public class TimeCompareService {
         List<LocalTime> timeSet = timeTransLocalTime.transformTime(timeList);
         LocalTime now = LocalTime.now();
 
-        LocalTime limitTime = LocalTime.parse("22:10", DateTimeFormatter.ofPattern("HH:mm"));
-        if (now.isAfter(limitTime)) {
-            return null;
-        }
-
         List<Long> differences = timeSet.stream()
                 .map(time -> ChronoUnit.MINUTES.between(now, time))
                 .filter(diff -> diff > 0)
@@ -38,8 +33,8 @@ public class TimeCompareService {
         Optional<Long> secondTime = differences.size() > 1 ? Optional.of(differences.get(1)) : Optional.empty();
 
 
-        String nextTime1 = firstTime.map(this::formattingTime).orElse("서버에 오류가 생긴듯");
-        String nextTime2 = secondTime.map(this::formattingTime).orElse("서버에 오류가 생긴듯");
+        String nextTime1 = firstTime.map(this::formattingTime).orElse("오늘 운행이 종료됐어요");
+        String nextTime2 = secondTime.map(this::formattingTime).orElse("오늘 운행이 종료됐어요");
 
         String[] result = {nextTime1, nextTime2};
 
