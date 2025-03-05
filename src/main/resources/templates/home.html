@@ -78,7 +78,7 @@
 <div class="container">
     <h2>지역 선택</h2>
 
-    <form th:action method="post">
+    <form th:action="@{/selectRegion}" method="get">
         <div class="mb-3">
             <label for="scrollType" class="form-label" th:text="'지역 선택 :'">지역 선택 :</label>
             <select id="scrollType" name="selectRegion" class="form-select">

@@ -6,14 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import test.projectbus.logic.repository.RegionRepository;
 import test.projectbus.logic.service.TimeCompareService;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -22,43 +22,40 @@ public class HomeController {
 
     private final RegionRepository regionRepository;
     private final TimeCompareService timeCompareService;
-    /**
-     * 지역 추가하고 model 에 넣어 html 에 보내준다.
-     */
+
     @ModelAttribute(name = "regions")
     public List<String> regions() {
-
         return Arrays.asList("학교", "가미", "루이까스텔", "풍물거리");
     }
 
     @GetMapping("/")
     public String home() {
-        return "home";
+        return "home"; // home.html 렌더링
     }
 
-    /**
-     * selectRegion 은 영어로 된 지역을 반환한다.
-     */
-    @PostMapping("/")
-    public String selectRegion(@RequestParam("selectRegion") String selectRegion, Model model) {
+    @GetMapping("/selectRegion")
+    public String selectRegion(@RequestParam(value = "selectRegion", required = false) String selectRegion,
+                               Model model) {
+        if (selectRegion != null) {
+            List<String> regionList = regionRepository.getReionList(selectRegion);
+            String[] time = timeCompareService.compareTime(regionList);
 
-        List<String> reionList = regionRepository.getReionList(selectRegion);
-        String nextTime = timeCompareService.compareTime(reionList);
+            model.addAttribute("nextTime1", time[0]);
+            model.addAttribute("nextTime2", time[1]);
+            model.addAttribute("currentTime", currentTime());
+            model.addAttribute("selectRegion", selectRegion);
 
-        model.addAttribute("nextTime", nextTime);
-        model.addAttribute("currentTime", currentTime());
-        model.addAttribute("selectRegion", selectRegion);
-
-        log.info("currentTime : [{}]", LocalTime.now());
-        log.info("nextTime : [{}]", nextTime);
-
-        return "selectRegion";
+            log.info("currentTime : [{}]", LocalTime.now());
+            log.info("nextTime1 : [{}]", time[0]);
+            log.info("nextTime2 : [{}]", time[1]);
+        }
+        return "selectRegion"; // selectRegion.html 렌더링
     }
 
     private static String currentTime() {
-
         LocalTime now = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return now.format(formatter);
     }
+
 }
