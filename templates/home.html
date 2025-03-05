@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상주캠 버스시간표</title>
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* 전체 페이지 스타일 */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* 중앙 컨테이너 */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 320px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 제목 스타일 */
+        h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* 드롭다운 스타일 */
+        .form-select {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #74ebd5;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .form-select:focus {
+            border-color: #4facfe;
+            box-shadow: 0px 0px 5px rgba(79, 172, 254, 0.5);
+            outline: none;
+        }
+
+        /* 버튼 스타일 */
+        .btn-primary {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #00f2fe, #4facfe);
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>지역 선택</h2>
+
+    <form th:action method="post">
+        <div class="mb-3">
+            <label for="scrollType" class="form-label" th:text="'지역 선택 :'">지역 선택 :</label>
+            <select id="scrollType" name="selectRegion" class="form-select">
+                <option th:each="region : ${regions}"
+                        th:value="${region}"
+                        th:text="${region}">지역</option>
+            </select>
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">전송해라 애송이</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
