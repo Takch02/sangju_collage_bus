@@ -1,6 +1,7 @@
 # 경북대학교 상주캠퍼스 셔틀버스 시간표
 
 개발 공부 및 주변 지인들에게 배포 목적으로 만들었습니다.
+
 link : https://parallel-casi-takch02-efa23c7a.koyeb.app/
 ## 개발 목적
 
