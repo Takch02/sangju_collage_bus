@@ -1,0 +1,31 @@
+services:
+  # 🟢 1. 사용자 앱 (target)
+  target:
+    build: .
+    container_name: my-app-target
+    image: my-app-image:latest # 본인의 앱 이미지로 변경
+    volumes:
+      - logs:/app/logs # ⭐️ 로그 폴더 공유 필수!
+    ports:
+      - "8085:8085" # 서비스 포트
+
+  # 🟡 2. MCP 수집기 (forwarder)
+  forwarder:
+    image: ${FORWARDER_IMAGE}
+    container_name: mcp-forwarder-demo
+    depends_on: [target]
+    volumes:
+      - logs:/logs:ro # target이 쓴 로그를 읽기 전용으로 마운트
+    environment:
+      MCP_LOG_INGEST_URL: "${MCP_DOMAIN}/api/servers/${SERVER_NAME}/ingest/logs"
+      MCP_METRIC_INGEST_URL: "${MCP_DOMAIN}/api/servers/${SERVER_NAME}/ingest/metrics"
+      MCP_HEALTH_INGEST_URL: "${MCP_DOMAIN}/api/servers/${SERVER_NAME}/ingest/health"
+      HEALTH_URL: "http://target:9090/actuator/health"
+      MCP_TOKEN: "${INGEST_TOKEN}"
+      DISCORD_WEBHOOK_URL: "${DISCORD_WEBHOOK_URL}"
+      LOG_PATH: "/logs/application.log"
+      ACTUATOR_URL: "http://target:9090/actuator/metrics"
+    restart: unless-stopped
+
+volumes:
+  logs: # 로그 공유용 볼륨 정의
